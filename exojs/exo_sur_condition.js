@@ -70,5 +70,24 @@ function drawRectangle(longueur, hauteur, bord = "*", coin = "#") {
         console.log(ligne);
     }
 }
+/*Créez une page HTML qui contient un H1 comme titre et deux listes (une ordonnée et une non-ordonnée) qui contiendront 3 li chacune
+	
+Sélectionnez la liste non-ordonnée et rajouter 2 li à la fin
+	
+Sélectionnez la liste ordonnée et rajoutez 2 li au début
+	
+Rajoutez un sous-titre de votre choix après le titre
+	
+Modifiez le contenu du premier élément de la liste ordonnée
+	
+Modifiez le contenu du second élément de la liste non-ordonnée
+	
+Changez le couleur du titre
 
- 
+Exercice à faire en Javascript ! J'ai déjà confiance en vos capacités HTML*/
+
+// document.querySelector("ul").insertAdjacentHTML("afterend","<li>mangue</li>")
+let fruit= document.querySelector("ul")
+fruit.insertAdjacentHTML("afterend","<li>mangue</li>")
+fruit.insertAdjacentHTML("afterend","<li>grenade</li>")
+    
