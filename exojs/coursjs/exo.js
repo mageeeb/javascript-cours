@@ -11,6 +11,8 @@ numero.insertAdjacentHTML("afterbegin","<li>grenade</li>")
 
 //Rajoutez un sous-titre de votre choix après le titre
 let titreh1 = document.querySelector("h1")
+
+//Changez le couleur du titre
 titreh1.style = "red"
 
 /*let newh2 = document.createElement("h2");
