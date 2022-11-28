@@ -1,0 +1,26 @@
+/*li // sélection par balises
+
+
+
+ul li // li se trouvant dans des ul, enfants directs ou pas
+
+
+
+<ul><li></li> // sera sélectionné
+<div><li></li> //sera sélectionné
+</div></ul>ul>li // li se trouvant dans des ul, mais seulement les enfants directs
+
+
+
+<ul><li></li> // sera sélectionné
+<div><li></li></div></ul>div+p // sélectionner un paragraphe directement après une div
+
+
+
+<div><p></p></div><p></p> // sera sélectionné
+<p></p>div~p // sélectionner les paragraphes qui suivent une div mais pas forcément directement
+
+
+
+<div><p></p></div><p></p> // sera sélectionné
+<p></p> // sera sélectionné*/
