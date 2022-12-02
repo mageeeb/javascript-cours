@@ -1,5 +1,9 @@
 //Sélectionnez la liste ordonnée et rajoutez 2 li au début 
 let fruit = document.querySelector("ol")
+
+fruit.insertAdjacentHTML("afterbegin","<li>tomate</li>")
+fruit.insertAdjacentHTML("afterbegin", "<li>manioc</li>")
+
 fruit.insertAdjacentHTML("afterbegin","<li>-1</li>")
 fruit.insertAdjacentHTML("afterbegin", "<li>0</li>")
 
@@ -7,7 +11,15 @@ fruit.insertAdjacentHTML("afterbegin", "<li>0</li>")
 
 let numero = document.querySelector("ul")
 numero.insertAdjacentHTML("beforeend","<li>mangue</li>")
+
+numero.insertAdjacentHTML("beforeend", "<li>grenade</li>")
+
+//je rajoute des li avec des noms de ville au senegal et j'en rajoute 3 de plus
+let pays = document.querySelector(".pays")
+pays.insertAdjacentHTML("beforeend", "<li>tambacounda</li>")
+pays.insertAdjacentHTML("beforeend" , "<li>saloum</li>
 numero.insertAdjacentHTML("beforeend","<li>grenade</li>")
+
 
 //Rajoutez un sous-titre de votre choix après le titre
 let titreh1 = document.querySelector("h1")
