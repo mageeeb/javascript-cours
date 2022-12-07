@@ -71,3 +71,31 @@ function scrollToBottom() {
 /*let titre3 = document.querySelector("h1")
 titre3.addEventListener(click, scrollToTop)*/
  
+
+/*----CORRIGE DE ANDRE-----*/
+/*const backgroundColor = document.querySelector("#backgroundColor");
+const textColor = document.querySelector("#textColor");
+const body = document.querySelector("body");
+
+function changeBackgroundColor() {
+	body.style.backgroundColor = backgroundColor.value;
+	localStorage.setItem("backgroundColor", backgroundColor.value);
+}
+
+function changeTextColor() {
+	body.style.color = textColor.value;
+	localStorage.setItem("textColor", textColor.value);
+}
+
+if (localStorage.getItem("backgroundColor")) {
+	body.style.backgroundColor = localStorage.getItem("backgroundColor");
+	backgroundColor.value = localStorage.getItem("backgroundColor");
+}
+
+if (localStorage.getItem("textColor")) {
+	body.style.color = localStorage.getItem("textColor");
+	textColor.value = localStorage.getItem("textColor");
+}
+
+backgroundColor.addEventListener("change", changeBackgroundColor);
+textColor.addEventListener("change", changeTextColor)*/
