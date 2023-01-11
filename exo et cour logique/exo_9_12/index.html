@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Image</title>
+</head>
+<body>
+    <header class="header">
+        <img src="./images/1.PNG" alt="" class="superposé">
+        <img src="./images/2.PNG" alt="" class="superposé1">
+        <img src="./images/3.PNG" alt="" class="superposé2">
+    </header>
+
+    <script>
+        const titres = document.querySelector(".header");
+        let indexTitres = 0;
+        	function arrowsScrollTo() {
+                    if (event.key === "ArrowUp") {
+                        event.preventDefault();
+                        indexTitres = indexTitres - 1 < 0 ? titres.length - 1 : indexTitres - 1
+                        titres[indexTitres].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else if (event.key === "ArrowDown") {
+                        event.preventDefault();
+                        indexTitres = indexTitres + 1 > titres.length - 1 ? 0 : indexTitres + 1
+                        titres[indexTitres].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+
+                document.addEventListener("keydown", arrowsScrollTo);
+    </script>
+</body>
+
+</html>

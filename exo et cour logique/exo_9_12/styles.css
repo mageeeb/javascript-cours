@@ -1,0 +1,27 @@
+
+body{
+
+}
+
+
+
+.header{
+    position: relative;
+}
+
+.superposé{
+      /*position: absolute;*/
+   top: 25px;
+   left: 30px;
+}
+
+.superposé1{
+    position: relative;
+    left: 100em;
+}
+
+.superposé2{
+    position: relative;
+    right: -150em;
+}
+
