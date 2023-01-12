@@ -1,0 +1,22 @@
+
+/* permet de mettre le captcha non cliquable */
+#captcha{
+    -webkit-user-select: none;
+    -ms-user-select : none;
+    user-select: none;
+    background-color: black;
+    display: inline-block;
+    position: relative;
+    left: 3em;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.div{
+    position: relative;
+    left: 13em;
+}
+
+#captchaInput{
+    border: 2px solid black;
+}
