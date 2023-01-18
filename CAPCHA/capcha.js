@@ -15,8 +15,9 @@ function captchaCF2M(callback, captchaLen) {
 					return arrayOfElements
 				}
 				// Vide le contenu de l'élément avec l'id "captcha" et y insère un nouveau captcha
-				function generateCaptcha() {
+			function generateCaptcha() {
 					captcha.innerHTML = "";
+					captchaInput.value = "";
 
 					let captchaArray = getElementsFromArray(allCharacters, captchaLen);
                     for (let i = 0; i < captchaArray.length; i++) {
@@ -27,8 +28,13 @@ function captchaCF2M(callback, captchaLen) {
 
 				function validateCaptcha() {
 					if (captcha.textContent === captchaInput.value) {
+						captchaInput.classList.remove("invalidCaptcha");
+						captchaInput.classList.add("validCaptcha");
 						callback();
+					} else if (captchaInput.value === "") {
+						captchaInput.classList.add("emptyCaptcha");
 					} else {
+						captchaInput.classList.add("invalidCaptcha");
 						generateCaptcha(captchaLen);
 					}
     }
@@ -59,4 +65,4 @@ function captchaCF2M(callback, captchaLen) {
 				// document.querySelector("#monFormulaire").submit(); // Envoyer un formulaire
 			}
 
-			captchaCF2M(redirectionDuckduck, 8)
+			captchaCF2M(redirectionDuckduck, 4)

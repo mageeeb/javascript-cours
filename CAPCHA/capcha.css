@@ -17,6 +17,17 @@
     left: 13em;
 }
 
-#captchaInput{
+/*#captchaInput{
     border: 2px solid black;
+}*/
+
+.invalidCaptcha{
+        border: 2px solid red;
+}
+.invalidCaptcha + p::after{
+    content: "Désolé mais vous êtes un robo!!";
+    color: red;
+}
+.validCaptcha{
+    border: 2px solid green;
 }
