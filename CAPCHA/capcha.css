@@ -25,7 +25,7 @@
         border: 2px solid red;
 }
 .invalidCaptcha + p::after{
-    content: "Désolé mais vous êtes un robo!!";
+    content: "Désolé mais  vous êtes un robo!!";
     color: red;
 }
 .validCaptcha{
