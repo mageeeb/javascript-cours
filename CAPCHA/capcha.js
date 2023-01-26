@@ -61,8 +61,8 @@ function captchaCF2M(callback, captchaLen) {
 			}
 
 			function redirectionDuckduck() {
-				document.location = "https://duckduckgo.com"; // Redirection vers un site
-				// document.querySelector("#monFormulaire").submit(); // Envoyer un formulaire
+				//document.location = "https://duckduckgo.com"; // Redirection vers un site
+				 document.querySelector("#monFormulaire").requestSubmit(); // Envoyer un formulaire
 			}
 
 			captchaCF2M(redirectionDuckduck, 4)
