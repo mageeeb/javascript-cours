@@ -57,3 +57,31 @@ let noms = ["Brenda", "Amelia", "Kate", "Kayla", "Jackie", "Daria", "Anna"]
 const starWithA = noms.filter( elem => elem[0] === "A")
 
 starWithA
+//exercice fonction fléché
+
+//1) Créer une fonction presentation qui prend 3 arguments (prenom, nom, age) qui affiche dans la console une phrase de présentation.
+const presentation = (prenom, nom, age) => 
+  `Salutations je suis ${prenom} de la maison ${nom} et mon âge est d'actuellement ${age} années`; 
+
+ presentation("magib","sall","31");
+
+//2) Créer une fonction calculatriceSomme qui prend 2 arguments (nombre1, nombre2) et qui renvoie le résultat. Faites la même chose pour les 3 autres opérations de base mais donnez à la multiplication et à la division des paramètres par défaut valant 1.
+
+ const calculatriceSomme = (nombre1, nombre2) => nombre1 + nombre2;
+
+ const calculatriceSoustraction = (nombre1, nombre2) =>  nombre1 - nombre2;
+
+ const calculatriceMultiplication = (nombre1 = 1, nombre2 = 1) =>  nombre1 * nombre2;
+
+ const calculatriceDivision = (nombre1 = 1, nombre2 = 1) =>  nombre1 / nombre2;
+
+//5) Créer une fonction estImpair qui prend un argument (nombre) qui retourne true si le nombre est impaire ou false sinon.
+const impair = num => num % 2 !== 0 ? true : false;
+impair(5);
+
+//6) A partir de l'objet suivant faites en sorte de créer une fonction qui soit liée (this) définitivement à celui-ci (peu importe si la fonction est sortie de l'objet ou transférée à un autre objet) et qui affiche la valeur de la propriété nom.
+function afficherThis(){
+  console.log(this);
+}
+let president = {nom: "John Kennedy"};
+
