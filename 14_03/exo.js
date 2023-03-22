@@ -3,9 +3,19 @@
 }*/
 
 function changerCouleur(element) {
-    element.style.color='red';
+    color = element.style.color ;
 
-    if(element.style.color==='red'){
-        element.style.color='green'
+    if(color==='black' || color==='' ){
+        color='red'
+    }else if(color==='red'){
+        color='blue'
+    }else if(color==='blue'){
+        color='black'
     }
-}
+    element.style.color = color;
+     /*if (element.classList.contains("red")) {
+        element.classList.remove("red");element.classList.add("green"); } 
+        else if (element.classList.contains("green")) {element.classList.remove("green"); element.classList.add("blue"); } 
+        else if (element.classList.contains("blue")) { element.classList.remove("blue"); element.classList.add("red"); }*/
+} 
+
