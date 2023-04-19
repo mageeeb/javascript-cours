@@ -36,7 +36,7 @@ let monChat = {
     }
 }
 monChat.perdreUneVie()
-
+/*------------------------------------------------------------------------------------------------------*/
 
 //6) Instanciez à partir de la classe FormData en prenant comme base un formulaire decontact basique (nom, prénom, email, sujet, message).Ajoutez ensuite manuellement un clef qui aura pour valeur la date actuelle.Vérifiez que les clefs & valeurs sont correctes en les affichant par couple dans un console.log.
 
@@ -48,13 +48,13 @@ formData.append('date', new Date().toISOString());
 for (const [key, value] of formData.entries/*"entries"donne les valeurs une par une*/()) {
   console.log(key + ': ' + value);
 }
-
+/*--------------------------------------------------------------------------------------------------*/
 
 //Exercice: Créez une classe voiture qui possédera un modèle, une marque, un prix actuel, un prix de base, une vitesse, une vitesse max et un état de déplacement (immobile ou mouvant, via un booléen, qui est basé sur la vitesse actuelle)
  
 //Chaque voiture doit pouvoir accélèrer (sans jamais dépasser la vitesse max), freiner (la vitesse ne peut pas descendre sous 0), et donne son statut à travers une chaîne de caractère. Elle doit aussi avoir des réductions via une méthode qui modifiera le prix (via un pourcentage)
 
-class Voiture:
+/*class Voiture:
     def __init__(self, modele, marque, prix_actuel, prix_base, vitesse, vitesse_max):
         self.modele = modele
         self.marque = marque
@@ -80,7 +80,36 @@ class Voiture:
 
     def reduction(self, pourcentage):
         reduction = (pourcentage / 100) * self.prix_actuel
-        self.prix_actuel -= reduction
+        self.prix_actuel -= reduction*/
+        class Voiture {
+            constructor(modele, marque, prixActuel, prixBase, vitesseActuelle, vitesseMax, etatDeplacement) {
+                this.modele = modele;
+                this.marque = marque;
+                this.prixActuel = prixActuel;
+                this.prixBase = prixBase;
+                this.vitesseActuelle = vitesseActuelle;
+                this.vitesseMax = vitesseMax;
+                this.etatDeplacement = vitesse > 0 ? true : false;
+            }
+            accelerer(increment) {
+                if (this.vitesseActuelle + increment <= this.vitesseMax && increment > 0) {
+                    this.vitesseActuelle += increment
+                }
+                if (this.vitesseActuelle > 0) this.etatDeplacement = true;
+            }
+            freiner(decrement) {
+                if (this.vitesseActuelle - decrement >= 0 && decrement > 0) {
+                    this.vitesseActuelle -= decrement
+                }
+                if (this.vitesseActuelle === 0) this.etatDeplacement = false;
+            }
+            reduction(pourcentage) {
+                this.prixActuel = this.prixBase - this.prixBase * (pourcentage / 100)
+            }
+            status() {
+                return `${this.modele} ${this.marque} a une vitesse max de ${this.vitesseMax}km/h et est actuellement ${this.etatDeplacement ? "mouvante" : "immobile"} à ${this.vitesseActuelle}km/h. Son prix de base est de ${this.prixBase} et est actuellement en vente à ${this.prixActuel}`
+            }
+        }
         
    /*Dans cet exemple, la classe Voiture possède les attributs suivants:
 
@@ -97,3 +126,78 @@ accelerer(): permet d’accélérer la voiture sans jamais dépasser sa vitesse 
 freiner(): permet de freiner la voiture sans que sa vitesse ne descende en dessous de 0.
 status(): renvoie l’état actuel de la voiture sous forme d’une chaîne de caractères.
 reduction(pourcentage): permet d’appliquer une réduction sur le prix actuel de la voiture en pourcentage.*/
+
+/*--------------------------------------------------------------------------------------------------*/
+//10) Vous devez représenter le personnel d'un avion à travers des objets en utilisant des classes.Créez une classe Travailleur qui possédera un nom, un prénom, des jours de congés restants aux nombres de 20 par défaut, une date d'embauche, une date de fin de contrat (undefined si CDI), un salaire et une méthode informations pour afficher toutes ces informations sous forme de phrase.10) Vous devez représenter le personnel d'un avion à travers des objets en utilisant des classes.Créez une classe Travailleur qui possédera un nom, un prénom, des jours de congés restants aux nombres de 20 par défaut, une date d'embauche, une date de fin de contrat (undefined si CDI), un salaire et une méthode informations pour afficher toutes ces informations sous forme de phrase.Créez ensuite une classe HotesseAir qui prendra comme classe ancêtre Travailleur. Les hôtesses de l'air posséderont toujours par défaut un contrat d'un an et un salaire de 2000€. Elles auront également une méthode renouvelerContrat qui ajoutera une année à leur fin de contrat.Viendra ensuite la classe PiloteAir qui prendra également comme classe ancêtre Travailleur. Leur contrat sera par défaut sans fin et avec un salaire de 8000€. Les pilotes auront une propriété supplémentaire appelée joursRecup qui contiendra le nombre de jours qu'ils peuvent récupérer. Ils auront de plus une méthode longCourrier qui ajoutera un jour de récupération à chaque long voyage accompli.Instanciez à partir des deux sous-classes pour tester la validité de votre code.
+
+
+
+  class Travailleur {    constructor(nom, prenom, dateDebut, dateFin, salaire, joursConges = 20) { 
+           this.nom = nom; 
+                  this.prenom = prenom;
+                  this.dateDebut = dateDebut;
+                  this.dateFin = dateFin;       
+                   this.salaire = salaire;     
+                      this.joursConges = joursConges;}  
+
+                        information() {  
+                                  console.log(`Le travailleur ${this.nom} ${this.prenom} a débuté chez nous le${this.dateDebut}, perçoit un salaire de ${this.salaire} et dispose encore de ${this.joursConges} jours de congés. Son contrat court jusqu'au ${this.dateFin}`); }
+                                  prendreConge(nbrConge) {
+                                    if (Number.isInteger(nbrConge) && this.joursConges >= nbrConge && nbrConge >= 0) {this.joursConges -= nbrConge;console.log(this.joursConges);}}}
+                                    class HotesseAir extends Travailleur {
+                                    constructor(nom, prenom, dateDebut, dateFin = new Date(dateDebut), salaire = 2000, joursConges = 2){  
+                                               super(nom, prenom, dateDebut, dateFin, salaire, joursConges); 
+                                               this.dateFin.setFullYear(this.dateFin.getFullYear()+1);}  
+                                                 renouvelerContrat() {
+                                                     this.dateFin.setFullYear(this.dateFin.getFullYear()+1);}}
+                                                     class PiloteAir extends Travailleur {
+                                                        constructor(nom, prenom, dateDebut, dateFin = undefined, salaire = 8000, joursConges = 20, joursRecup = 0) {
+                                                            super(nom, prenom, dateDebut, dateFin, salaire, joursConges);
+                                                            this.joursRecup = joursRecup;} 
+                                                            longCourrier() { 
+                                                                this.joursRecup++}
+                                                                prendreConge(nbrConge) {
+                                                                    if (Number.isInteger(nbrConge) && this.joursConges >= nbrConge && nbrConge >= 7) {
+                                                                        this.joursConges -= nbrConge;console.log(this.joursConges);}}}
+
+/*--------------------------------------------*/
+//Créer une classe Personne qui permet d'instancier des personnes ayant un prénom, un nom, un âge et une méthode pour se présenter (utilisez des getters & setters + propriétés privées)
+
+class Personne {
+    constructor(prenom, nom, age){
+        this.prenom=prenom;
+        this.nom=nom;
+        this.age=age;
+    }presentation(){
+        returnk(`${this.prenom} ${this.nom}${this.age}`);
+    }
+    get nom() {
+        return this._nom;
+    }
+    set nom(nom) {
+        if (typeof nom === "string") {
+            return `${this.nom}`
+        }
+
+    }
+    get prenom() {
+        return this._prenom;
+    }
+    set prenom(prenom) {
+        if (typeof prenom === "string") {
+
+        }
+
+    }
+    get age() {
+        return this._age;
+    }
+    set age(age) {
+        if (typeof age === "string") {
+
+
+        }
+
+    }
+
+}
