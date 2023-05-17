@@ -141,24 +141,24 @@ reduction(pourcentage): permet d’appliquer une réduction sur le prix actuel d
                       this.joursConges = joursConges;}  
 
                         information() {  
-                                  console.log(`Le travailleur ${this.nom} ${this.prenom} a débuté chez nous le${this.dateDebut}, perçoit un salaire de ${this.salaire} et dispose encore de ${this.joursConges} jours de congés. Son contrat court jusqu'au ${this.dateFin}`); }
-                                  prendreConge(nbrConge) {
-                                    if (Number.isInteger(nbrConge) && this.joursConges >= nbrConge && nbrConge >= 0) {this.joursConges -= nbrConge;console.log(this.joursConges);}}}
-                                    class HotesseAir extends Travailleur {
-                                    constructor(nom, prenom, dateDebut, dateFin = new Date(dateDebut), salaire = 2000, joursConges = 2){  
-                                               super(nom, prenom, dateDebut, dateFin, salaire, joursConges); 
-                                               this.dateFin.setFullYear(this.dateFin.getFullYear()+1);}  
-                                                 renouvelerContrat() {
-                                                     this.dateFin.setFullYear(this.dateFin.getFullYear()+1);}}
-                                                     class PiloteAir extends Travailleur {
-                                                        constructor(nom, prenom, dateDebut, dateFin = undefined, salaire = 8000, joursConges = 20, joursRecup = 0) {
-                                                            super(nom, prenom, dateDebut, dateFin, salaire, joursConges);
-                                                            this.joursRecup = joursRecup;} 
-                                                            longCourrier() { 
-                                                                this.joursRecup++}
-                                                                prendreConge(nbrConge) {
-                                                                    if (Number.isInteger(nbrConge) && this.joursConges >= nbrConge && nbrConge >= 7) {
-                                                                        this.joursConges -= nbrConge;console.log(this.joursConges);}}}
+ console.log(`Le travailleur ${this.nom} ${this.prenom} a débuté chez nous le${this.dateDebut}, perçoit un salaire de ${this.salaire} et dispose encore de ${this.joursConges} jours de congés. Son contrat court jusqu'au ${this.dateFin}`); }
+      prendreConge(nbrConge) {
+          if (Number.isInteger(nbrConge) && this.joursConges >= nbrConge && nbrConge >= 0) {this.joursConges -= nbrConge;console.log(this.joursConges);}}}
+        class HotesseAir extends Travailleur {
+          constructor(nom, prenom, dateDebut, dateFin = new Date(dateDebut), salaire = 2000, joursConges = 2){  
+          super(nom, prenom, dateDebut, dateFin, salaire, joursConges); 
+           this.dateFin.setFullYear(this.dateFin.getFullYear()+1);}  
+           renouvelerContrat() {
+            this.dateFin.setFullYear(this.dateFin.getFullYear()+1);}}
+       class PiloteAir extends Travailleur {
+         constructor(nom, prenom, dateDebut, dateFin = undefined, salaire = 8000, joursConges = 20, joursRecup = 0) {
+            super(nom, prenom, dateDebut, dateFin, salaire, joursConges);
+              this.joursRecup = joursRecup;} 
+                longCourrier() { 
+                 this.joursRecup++}
+                   prendreConge(nbrConge) {
+                 if (Number.isInteger(nbrConge) && this.joursConges >= nbrConge && nbrConge >= 7) {
+                   this.joursConges -= nbrConge;console.log(this.joursConges);}}}
 
 /*--------------------------------------------*/
 //Créer une classe Personne qui permet d'instancier des personnes ayant un prénom, un nom, un âge et une méthode pour se présenter (utilisez des getters & setters + propriétés privées)
