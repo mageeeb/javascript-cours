@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animal Facts</title>
+</head>
+<body>
+<h1>Animal Facts</h1>
+<div>
+  <input type="radio" id="cat" name="animal" value="cat" checked>
+  <label for="cat">Cat</label><br>
+  <input type="radio" id="dog" name="animal" value="dog">
+  <label for="dog">Dog</label><br>
+  <input type="radio" id="horse" name="animal" value="horse">
+  <label for="horse">Horse</label><br>
+</div>
+<div id="fact"></div>
+<button onclick="getFact()">Random</button>
+
+<script>
+  function getFact() {
+    let animal = document.querySelector('input[name="animal"]:checked').value;
+    fetch(`https://cat-fact.herokuapp.com/facts/random?animal_type=${animal}`)
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById('fact').innerHTML = data.text;
+            });
+  }
+
+
+</script>
+</body>
+</html>
