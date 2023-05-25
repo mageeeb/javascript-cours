@@ -8,7 +8,7 @@ function success(data) {
     $('body').append('<h1>' + data.activity + '</h1>');
 }
 
-$.get('https://www.boredapi.com/api/activity', success);
+$.get('https://alexwohlbruck.github.io/cat-facts/docs/GET /facts/random?animal_type=cat&amount=2', success);
 
 /*function success(data, status) {
     let api = data.entries[0].API;
