@@ -21,7 +21,26 @@
             });
     }
 
-    getFact();
+
+
+// Cette fonction prend un fait comme argument et récupère un tableau de faits enregistrés dans le stockage local (ou crée un tableau vide s'il n'y a pas de faits enregistrés). Elle ajoute ensuite le nouveau fait au tableau et le réenregistre dans la mémoire locale.
+function saveFact(fact) {
+    let savedFacts = JSON.parse(localStorage.getItem('savedFacts')) || [];
+    savedFacts.push(fact);
+    localStorage.setItem('savedFacts', JSON.stringify(savedFacts));
+}
+
+// Cette fonction récupère le tableau des faits enregistrés dans le stockage local et crée un nouvel élément div pour chaque fait. Elle ajoute ensuite le texte du fait à l'élément div et l'ajoute au conteneur de faits.
+function showSavedFacts() {
+    let savedFacts = JSON.parse(localStorage.getItem('savedFacts')) || [];
+    let factContainer = document.getElementById('fact');
+    factContainer.innerHTML = '';
+    for (let fact of savedFacts) {
+        let factElement = document.createElement('div');
+        factElement.innerText = fact;
+        factContainer.appendChild(factElement);
+    }
+}
 </script>
 <!--2) Ajoutez des input radio pour permettre à l'utilisateur de sélectionner si il veut un fact sur les chats ou les chiens ou les chevaux.-->
 </body>

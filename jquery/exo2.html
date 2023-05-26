@@ -6,6 +6,8 @@
 <body>
 <h1>Animal Facts</h1>
 <div>
+<!-- 2) Ajoutez des input radio pour permettre à l'utilisateur de sélectionner si il veut un fact sur les chats ou les chiens ou les chevaux.-->
+
   <input type="radio" id="cat" name="animal" value="cat" checked>
   <label for="cat">Cat</label><br>
   <input type="radio" id="dog" name="animal" value="dog">
@@ -16,6 +18,9 @@
 <div id="fact"></div>
 <button onclick="getFact()">Random</button>
 
+<!-- 1) Visitez le site suivant qui fournit une API gratuite sans inscription (en simple c'est une source, sous forme d'un site, de données que l'on peut récupérer): https://alexwohlbruck.github.io/cat-facts/docs/Votre mission sera de récupérer en temps réel des fun facts sur les chats à partir de ce site en utilisant la méthode get et de les afficher sur une page html dans un cadre qui mettra en valeur ce fun fact. Un fun fact sera tiré au chargement de la page et un bouton random permettra de faire une requête pour récupérer un seul nouveau fact etl'afficher dans le cadre en supprimant l'ancien fact.-->
+
+
 <script>
   function getFact() {
     let animal = document.querySelector('input[name="animal"]:checked').value;
@@ -23,6 +28,21 @@
             .then(response => response.json())
             .then(data => {
               document.getElementById('fact').innerHTML = data.text;
+            });
+  }
+
+  function api() {
+    let numFacts = document.getElementById('num-facts').value;
+    fetch(`https://cat-fact.herokuapp.com/facts/random?amount=${numFacts}`)
+            .then(response => response.json())
+            .then(data => {
+              let factContainer = document.getElementById('fact');
+              factContainer.innerHTML = '';
+              for (let fact of data) {
+                let factElement = document.createElement('div');
+                factElement.innerText = fact.text;
+                factContainer.appendChild(factElement);
+              }
             });
   }
 

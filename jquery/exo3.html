@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Ceci crée une étiquette et un élément de saisie où l'utilisateur peut entrer le nombre de faits qu'il souhaite afficher. L'attribut min garantit que l'utilisateur ne peut pas saisir une valeur inférieure à 1.-->
+<label for="num-facts">Number of facts to display:</label>
+<input type="number" id="num-facts" name="num-facts" min="1" value="1">
+<script>
+<!--  Cette version modifiée de la fonction getFact récupère la valeur saisie par l'utilisateur dans l'entrée num-facts et l'utilise pour construire l'URL de la requête de recherche. Elle récupère ensuite le nombre spécifié de faits à partir de l'API Cat Facts et les affiche dans le conteneur de faits.-->
+  function getFact() {
+    let numFacts = document.getElementById('num-facts').value;
+    fetch(`https://cat-fact.herokuapp.com/facts/random?amount=${numFacts}`)
+            .then(response => response.json())
+            .then(data => {
+              let factContainer = document.getElementById('fact');
+              factContainer.innerHTML = '';
+              for (let fact of data) {
+                let factElement = document.createElement('div');
+                factElement.innerText = fact.text;
+                factContainer.appendChild(factElement);
+              }
+            });
+  }
+</script>
+</body>
+</html>
