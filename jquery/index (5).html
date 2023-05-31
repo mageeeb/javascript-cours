@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 id="titre">Test</h1>
+	<button id="randomFact" style="margin: 5px;">Random fact</button>
+	<button id="favorites" style="margin: 5px;">Your Favorites</button>
+	<label><input type="radio" name="animalType" value="cat" checked>Chat</label>
+	<label><input type="radio" name="animalType" value="dog">Chien</label>
+	<label><input type="radio" name="animalType" value="horse">Cheval</label>
+	<label><input style="width: 3em; text-align: right;" type="number" min="1" value="1"> Nombre de fun facts</label>
+	
+	<div id="fact"></div>
+
+<script defer>
+    function success(data, status) {
+		console.log(data);
+		
+		let cadreFact = document.querySelector("#fact");
+		cadreFact.innerHTML = "";	
+		
+		let dataArray = Array.isArray(data) ? data : [data];
+		
+		for (let i = 0; i < dataArray.length; i++) {
+			let text = dataArray[i].text;
+			let type = dataArray[i].type;
+				
+			cadreFact.insertAdjacentHTML('beforeend', `<div style="border: 2px black solid; paddingLeft: 5px;">
+				<h2>${type}</h2><button onclick="like(this)" style="float: right;"><img style="width: 20px;" src="heart-black.svg"></button>
+				<p>${text}</p>
+			</div>`);	
+		}
+    }
+	
+	
+	function like(likeButton) {
+		let divFact = likeButton.parentNode;		
+		let type = divFact.querySelector("h2").textContent;
+		let text = divFact.querySelector("p").textContent;
+		
+		
+		let facts = localStorage.getItem('facts');
+		
+		if (facts) {
+			var arrayFacts = JSON.parse(facts);
+			arrayFacts.push({type, text});
+		} else {
+			var arrayFacts = [{type, text}];
+		}
+		
+		let JsonArrayFacts = JSON.stringify(arrayFacts);
+		localStorage.setItem('facts', JsonArrayFacts);
+	}
+	
+	function remove(likeButton) {
+		let index = likeButton.dataset.index;
+		let facts = localStorage.getItem('facts');
+		
+		let arrayFacts = JSON.parse(facts);
+		arrayFacts.splice(index, 1);
+		
+		let JsonArrayFacts = JSON.stringify(arrayFacts);
+		localStorage.setItem('facts', JsonArrayFacts);
+		
+		showFavorites();
+	}
+	
+	
+	function apiRequest() {
+		let inputAnimal = document.querySelector("input:checked");
+		let inputNumber = document.querySelector("input[type='number']");
+		
+		let baseURL = 'https://cat-fact.herokuapp.com/facts/';
+		let endpoint = 'random?';
+		let animalType = `animal_type=${inputAnimal.value}&`;
+		let factsNumber = `amount=${inputNumber.value}&`;
+		
+		$.get(`${baseURL}${endpoint}${animalType}${factsNumber}`, success);
+	}
+	
+	function showFavorites() {
+		let facts = localStorage.getItem('facts');
+		
+		if (facts) {
+			var arrayFacts = JSON.parse(facts);
+			let cadreFact = document.querySelector("#fact");
+			cadreFact.innerHTML = "";
+			
+			for (let i = 0; i < arrayFacts.length; i++) {
+			let text = arrayFacts[i].text;
+			let type = arrayFacts[i].type;
+				
+			cadreFact.insertAdjacentHTML('beforeend', `<div style="border: 2px black solid; paddingLeft: 5px;">
+				<h2>${type}</h2><button data-index="${i}" onclick="remove(this)" style="float: right;"><img style="width: 20px;" src="heart-red.svg"></button>
+				<p>${text}</p>
+			</div>`);
+			}
+		}
+	}
+	
+	let randomButton = document.querySelector("#randomFact");
+	randomButton.addEventListener("click", apiRequest);	
+	apiRequest();
+	
+	let buttonFavorites = document.querySelector("#favorites");
+	buttonFavorites.addEventListener("click", showFavorites);	
+	showFavorites();
+</script>
+</body>
+</html>
